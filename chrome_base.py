@@ -1,6 +1,6 @@
 # importamos la libreria
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 
 
 def getChrome():
