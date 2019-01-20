@@ -19,7 +19,7 @@ def getFirefox():
     # driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
 
     # Vamos al sitio web
-    driver.get("http://www.goodstartbooks.com")
+    driver.get("http://www.google.com")
 
     driver.implicitly_wait(5) # sleep for 10 seconds
 
