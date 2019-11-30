@@ -8,13 +8,19 @@ from selenium.webdriver.firefox.options import Options
 class Driver:
     # Constuctor
     def __init__(self):
-        # Opciones
+        # Opciones para Firefox
         self.options = Options()
         self.options.add_argument('--ignore-certificate-error')
+        # Opciones para Google Chrome
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_argument('--ignore-certificate-error')
+        # Opciones para Internet Explorer
+        self.ie_options = webdriver.IeOptions()
+        self.ie_options.add_argument('--ignore-certificate-error')
         # Logs
-        self.service_args_chrome = ['--verbose', '--log-path=./chromedriver.log']
+        self.service_args_firefox = ['--verbose', '--log-path=./logs/firefox.log']
+        self.service_args_chrome = ['--verbose', '--log-path=./logs/chromedriver.log']
+        self.service_args_ie = ['--verbose', '--log-path=./logs/ie.log']
 
 
     def getDriverFirefox(self, view = True):
@@ -37,11 +43,12 @@ class Driver:
             self.chrome_options.add_argument("--no-default-browser-check") #Overrides default choices
             self.chrome_options.add_argument("--no-first-run")
             self.chrome_options.add_argument("--disable-default-apps")
+            # self.chrome_options.add_argument("--test-type")
+            # self.chrome_options.binary_location = "/usr/bin/chromium" #webdriver
             
         
         # driver = webdriver.Chrome(options=self.options, service_args=self.service_args_chrome)
         driver = webdriver.Chrome(chrome_options=self.chrome_options)
-
 
         return driver
 
@@ -49,9 +56,9 @@ class Driver:
     def getDriverIE(self,view = True):
         if not view:
             # Ocultamos el navegador
-            self.options.headless = True
+            self.ie_options.headless = True
 
 
-        driver = webdriver.IE(options=self.options)
+        driver = webdriver.Ie(ie_options=self.ie_options)
 
         return driver

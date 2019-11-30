@@ -20,6 +20,19 @@ def getChrome():
 
     print("Page Title is : %s" %driver.title)
 
+    # obtener estructura de la pagina
+    html = driver.page_source
+    print(html)
+
+    # Ingresar texto en una pagina
+    text_area = driver.find_element_by_id('textarea')
+    text_area.send_keys("This text is send using Python code.")
+
+    # Obtener los enlaces del sitio
+    driver.get('https://www.w3.org/')
+    for a in driver.find_elements_by_xpath('.//a'):
+        print(a.get_attribute('href'))
+
     # cerramos el driver
     driver.quit()
 
